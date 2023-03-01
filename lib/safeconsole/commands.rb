@@ -1,6 +1,5 @@
 module Safeconsole
   module Commands
-
     def commands
       puts Safeconsole::Messages.commands
     end

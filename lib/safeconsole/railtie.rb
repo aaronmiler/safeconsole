@@ -1,5 +1,5 @@
-require 'safeconsole'
-require 'rails'
+require "safeconsole"
+require "rails"
 
 module Safeconsole
   class Railtie < Rails::Railtie
