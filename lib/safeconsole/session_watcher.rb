@@ -22,7 +22,7 @@ module Safeconsole
         Thread.start do
           loop do
             if timeout_reached? || session_limit_reached?
-              puts "You pass out from exhaustion. The maze has won."
+              Messages.expired
               break binding.eval("exit")
             end
 

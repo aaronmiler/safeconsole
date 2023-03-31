@@ -35,10 +35,30 @@ module Safeconsole
       MSG
     end
 
+    def session_start
+      "You're searching for a long lost artifact."
+    end
+
+    def transaction_start
+      "You begin casting a locating spell"
+    end
+
+    def refresh
+      "Your magic is running low. You stop casting to drink a potion, restoring your energy."
+    end
+
+    def done
+      "You've located the lost artifact!"
+    end
+
+    def session_expired
+      "You've been searching for too long. The artifact is lost forever."
+    end
+
     def unsafe_env
       <<~MSG
         SAFECONSOLE WARNING
-          Safeconsole is configured to now allow unsafe consoles for the current environment: #{Safeconsole.env}
+          Safeconsole is configured to not allow unsafe consoles for the current environment: #{Safeconsole.env}
           This session will now exit. If this is a mistake, check your safeconsole configuration
       MSG
     end
