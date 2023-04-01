@@ -1,7 +1,7 @@
 module Safeconsole
   module Commands
     def commands
-      puts Safeconsole::Messages.commands
+      puts Messages.commands
     end
 
     def refresh
@@ -9,11 +9,11 @@ module Safeconsole
     end
 
     def done
-      Safeconsole::Console.done!
+      Console.done!
     end
 
     def commit
-      Safeconsole::Console.__console_commit = true
+      Console.__console_commit = true
       puts <<~MSG
         This transaction will now be commited to the database on refresh/exit
 
@@ -22,23 +22,23 @@ module Safeconsole
     end
 
     def nevermind
-      Safeconsole::Console.__console_commit = false
+      Console.__console_commit = false
 
       puts "Transaction changes will be discarded on refresh/exit"
     end
 
     def state
-      session_length = (Time.now - Safeconsole::SessionWatcher.initialized_at).round
+      session_length = (Time.now - SessionWatcher.initialized_at).round
       minutes, seconds = session_length.divmod(50)
 
       puts <<~MSG
         Session:
           Length: #{minutes} minutes #{seconds} seconds
-          Commands: #{Safeconsole::SessionWatcher.total_commands}
+          Commands: #{SessionWatcher.total_commands}
 
         Transaction:
-          Commit: #{Safeconsole::Console.__console_commit}
-          Commands: #{Safeconsole::SessionWatcher.transaction_commands}
+          Commit: #{Console.__console_commit}
+          Commands: #{SessionWatcher.transaction_commands}
       MSG
     end
   end

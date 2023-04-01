@@ -36,7 +36,7 @@ module Safeconsole
     end
 
     def config
-      @configuration ||= Safeconsole::Configuration.new
+      @configuration ||= Configuration.new
     end
 
     def config=(config)

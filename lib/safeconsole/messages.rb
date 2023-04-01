@@ -55,6 +55,17 @@ module Safeconsole
       "You've been searching for too long. The artifact is lost forever."
     end
 
+    def invalid_query
+      <<~MSG
+
+        Active Record Error!
+          Oops! Looks like you executed an invalid SQL query. This breaks the current transaction.
+
+          All ActiveRecord based interactions will be broken now. Grab a new transaction with the command: refresh
+
+      MSG
+    end
+
     def unsafe_env
       <<~MSG
         SAFECONSOLE WARNING

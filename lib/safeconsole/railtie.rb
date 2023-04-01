@@ -12,7 +12,7 @@ module Safeconsole
 
     console do
       if !Safeconsole.allow_unsafe? && Safeconsole.config.environments.include?(Rails.env)
-        puts Safeconsole::Messages.unsafe_env
+        puts Messages.unsafe_env
         exit
       end
     end

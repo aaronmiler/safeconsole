@@ -4,7 +4,7 @@ require "singleton"
 module Safeconsole
   class Console
     include Singleton
-    extend Safeconsole::Commands
+    extend Commands
 
     class << self
       attr_accessor :__console_done, :__console_commit
@@ -29,6 +29,9 @@ module Safeconsole
             binding.pry quiet: true, prompt_name: "safeconsole"
 
             raise ActiveRecord::Rollback unless @__console_commit
+          rescue ActiveRecord::StatementInvalid
+            puts Messages.invalid_query
+            raise ActiveRecord::Rollback
           end
 
           if @__console_done
