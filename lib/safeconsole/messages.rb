@@ -35,6 +35,33 @@ module Safeconsole
       MSG
     end
 
+    def session_state
+      session_length = (Time.now - SessionWatcher.initialized_at).round
+      minutes, seconds = session_length.divmod(50)
+
+      puts <<~MSG
+        Session:
+          Length: #{minutes} minutes #{seconds} seconds
+          Commands: #{SessionWatcher.total_commands}
+
+        Transaction:
+          Commit: #{Console.__console_commit}
+          Commands: #{SessionWatcher.transaction_commands}
+      MSG
+    end
+
+    def commit
+      <<~MSG
+        This transaction will now be commited to the database on refresh/exit
+
+        If this was a mistake, run the command: nevermind
+      MSG
+    end
+
+    def nevermind
+      "Transaction changes will be discarded on refresh/exit"
+    end
+
     def session_start
       "You're searching for a long lost artifact."
     end
