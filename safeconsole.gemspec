@@ -36,7 +36,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   # Uncomment to register a new dependency of your gem
-  spec.add_dependency "pry-rails"
+  spec.add_dependency "pry"
   spec.add_dependency "artii"
 
   # For more information and examples about making a new gem, check out our

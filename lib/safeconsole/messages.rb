@@ -63,7 +63,7 @@ module Safeconsole
     end
 
     def session_start
-      "You're searching for a long lost artifact."
+      "You're a wizard, searching for a long lost artifact."
     end
 
     def transaction_start

@@ -22,7 +22,8 @@ module Safeconsole
         Thread.start do
           loop do
             if timeout_reached? || session_limit_reached?
-              Messages.expired
+              puts Messages.session_expired
+              Console.__console_commit = false
               break binding.eval("exit")
             end
 
