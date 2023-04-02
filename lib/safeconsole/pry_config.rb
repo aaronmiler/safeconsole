@@ -12,10 +12,8 @@ module Safeconsole
       Pry.hooks.add_hook(:after_eval, "safeconsole__exit") do |output, binding, _pry|
         if Object.const_defined?(:Safeconsole) && (binding.config.prompt_name == "safeconsole")
           SessionWatcher.command_ran
-          if Console.instance_values["__exit_safeconsole"]
-            binding.eval("exit")
-            Console.closed
-          end
+
+          binding.eval("exit") if Console.done?
 
           if output == "safeconsole#refresh"
             SessionWatcher.transaction_commands = 0

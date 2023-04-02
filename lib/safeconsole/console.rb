@@ -11,9 +11,6 @@ module Safeconsole
     class << self
       attr_accessor :__console_done, :__console_commit
 
-      @__console_done = false
-      @__console_commit = false
-
       def run
         print_message(:welcome)
         print_message(:commands)
@@ -33,13 +30,10 @@ module Safeconsole
             raise ActiveRecord::Rollback unless @__console_commit
           end
 
-          if @__console_done
-            print_message(:transaction_start)
-            break
-          else
-            print_message(:refresh)
-            sleep 0.5
-          end
+          break print_message(:done) if @__console_done
+
+          print_message(:refresh)
+          sleep 0.5
         end
       end
 
@@ -48,8 +42,8 @@ module Safeconsole
         @__exit_safeconsole = true
       end
 
-      def closed
-        @__exit_safeconsole = false
+      def done?
+        @__console_done
       end
     end
   end

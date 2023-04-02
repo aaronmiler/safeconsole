@@ -1,7 +1,6 @@
 require "spec_helper"
 
 RSpec.describe Safeconsole::Messages do
-
   it "makes the #print_message method available when included" do
     expect(MessagesTestClass.method(:print_message).is_a?(Method)).to be true
     expect(MessagesTestModule.method(:print_message).is_a?(Method)).to be true
