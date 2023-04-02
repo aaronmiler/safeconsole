@@ -12,6 +12,10 @@ module Safeconsole
       end
     end
 
+    def self.respond_to_missing?(_name, _include_private)
+      true
+    end
+
     def self.method_missing(method)
       "**** Unknown Message #{method} ****"
     end

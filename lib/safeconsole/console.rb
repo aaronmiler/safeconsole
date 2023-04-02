@@ -25,7 +25,7 @@ module Safeconsole
           print_message(:transaction_start)
 
           ActiveRecord::Base.transaction do
-            binding.pry quiet: true, prompt_name: "safeconsole"
+            binding.pry quiet: true, prompt_name: "safeconsole" # standard:disable Lint/Debugger
 
             raise ActiveRecord::Rollback unless @__console_commit
           end
