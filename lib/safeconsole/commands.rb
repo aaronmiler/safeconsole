@@ -1,7 +1,7 @@
 module Safeconsole
   module Commands
     def commands
-      puts Messages.commands
+      print_message(:commands)
     end
 
     def refresh
@@ -14,16 +14,16 @@ module Safeconsole
 
     def commit
       Console.__console_commit = true
-      puts Messages.commit
+      print_message(:commit)
     end
 
     def nevermind
       Console.__console_commit = false
-      puts Messages.nevermind
+      print_message(:nevermind)
     end
 
     def state
-      puts Messages.session_state
+      print_message(:session_state)
     end
   end
 end

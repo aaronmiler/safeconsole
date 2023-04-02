@@ -4,6 +4,8 @@ require "singleton"
 module Safeconsole
   class Console
     include Singleton
+    include Messages
+
     extend Commands
 
     class << self
@@ -13,17 +15,17 @@ module Safeconsole
       @__console_commit = false
 
       def run
-        puts Messages.welcome
-        puts Messages.commands
+        print_message(:welcome)
+        print_message(:commands)
 
         SessionWatcher.watch_session! if Safeconsole.watch_session?
 
-        puts Messages.session_start
+        print_message(:session_start)
 
         loop do
           @__console_done = false
           @__console_commit = false
-          puts Messages.transaction_start
+          print_message(:transaction_start)
 
           ActiveRecord::Base.transaction do
             binding.pry quiet: true, prompt_name: "safeconsole"
@@ -32,10 +34,10 @@ module Safeconsole
           end
 
           if @__console_done
-            puts Messages.done
+            print_message(:transaction_start)
             break
           else
-            puts Messages.refresh
+            print_message(:refresh)
             sleep 0.5
           end
         end

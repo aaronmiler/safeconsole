@@ -2,6 +2,16 @@ require "artii"
 
 module Safeconsole
   module Messages
+    def self.included(base)
+       base.extend ClassMethods
+    end
+
+    module ClassMethods
+      def print_message(message_name)
+        puts Messages.send(message_name)
+      end
+    end
+
     module_function
 
     def app_name
@@ -39,7 +49,7 @@ module Safeconsole
       session_length = (Time.now - SessionWatcher.initialized_at).round
       minutes, seconds = session_length.divmod(50)
 
-      puts <<~MSG
+      <<~MSG
         Session:
           Length: #{minutes} minutes #{seconds} seconds
           Commands: #{SessionWatcher.total_commands}

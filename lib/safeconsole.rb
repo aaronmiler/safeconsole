@@ -11,7 +11,6 @@ require "safeconsole/commands"
 require "safeconsole/console"
 
 module Safeconsole
-  class Error < StandardError; end
   require "safeconsole/railtie" if defined?(Rails)
 
   module_function

@@ -3,6 +3,7 @@ require "singleton"
 module Safeconsole
   class SessionWatcher
     include Singleton
+    include Messages
 
     @initialized_at = Time.now
     @last_command_at = Time.now
@@ -22,7 +23,7 @@ module Safeconsole
         Thread.start do
           loop do
             if timeout_reached? || session_limit_reached?
-              puts Messages.session_expired
+              print_message(:session_expired)
               Console.__console_commit = false
               break binding.eval("exit")
             end
