@@ -12,6 +12,10 @@ module Safeconsole
       end
     end
 
+    def self.method_missing(method)
+      "**** Unknown Message #{method} ****"
+    end
+
     module_function
 
     def app_name
