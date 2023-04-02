@@ -40,7 +40,7 @@ module Safeconsole
           - refresh: Load a new transaction (and commit if configured)
           - commit: Set this transaction to be commited to the DB on refresh/exit
           - nevermind: Set this transaction to be *discarded* on refresh/exit
-          - state: Print the current transaction and session state (commit status, length, stats)
+          - stats: Print the current transaction and session stats (commit status, length, stats)
           - commands: Print command instructions again
 
         Hotkeys:
@@ -49,7 +49,7 @@ module Safeconsole
       MSG
     end
 
-    def session_state
+    def session_stats
       session_length = (Time.now - SessionWatcher.initialized_at).round
       minutes, seconds = session_length.divmod(50)
 

@@ -1,16 +1,13 @@
 module Safeconsole
   class Configuration
-    attr_accessor :enabled,
-      :welcome_message,
-      :app_name,
-      :environments,
-      :current_env,
+    attr_accessor :app_name,
       :allow_unsafe,
+      :current_env,
+      :environments,
       :command_timeout,
       :session_timeout
 
     def initialize
-      @enabled = true
       @environments = %w[]
       @app_name = Utils.get_app_name
       @allow_unsafe = true
@@ -19,10 +16,6 @@ module Safeconsole
   end
 
   class << self
-    def enabled?
-      config.enabled
-    end
-
     def allow_unsafe?
       config.allow_unsafe
     end
@@ -37,10 +30,6 @@ module Safeconsole
 
     def config
       @configuration ||= Configuration.new
-    end
-
-    def config=(config)
-      @configuration = config
     end
 
     def configure

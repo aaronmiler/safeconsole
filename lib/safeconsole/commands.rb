@@ -22,8 +22,8 @@ module Safeconsole
       print_message(:nevermind)
     end
 
-    def state
-      print_message(:session_state)
+    def stats
+      print_message(:session_stats)
     end
   end
 end
