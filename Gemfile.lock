@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    safeconsole (0.1.0)
+    safeconsole (1.0.0)
       artii
       pry
 
