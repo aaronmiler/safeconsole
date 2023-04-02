@@ -4,7 +4,7 @@ RSpec.describe Safeconsole::Commands do
   subject { CommandsTestClass }
 
   it "makes the commands available to the included class" do
-    commands = %i[commands refresh done commit nevermind state]
+    commands = %i[commands refresh done commit nevermind stats]
 
     commands.each do |command|
       expect(subject.method(command).is_a?(Method)).to be true

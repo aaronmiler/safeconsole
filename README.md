@@ -1,6 +1,7 @@
 # Safeconsole
 
-Safeconsole is a utility for a safe by default `rails console`. Every session is wrapped in an Active Record transaction, preventing accidental mutations on production data.
+Safeconsole is a utility for a safe by default `rails console`. Every session is wrapped in an
+ Active Record transaction, preventing accidental mutations on production data.
 
 ## Installation
 
